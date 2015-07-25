@@ -26,8 +26,8 @@ export default React.createClass({
 
 		this.refs.addForm.getDOMNode().reset();
 	},
-	markAsDone(taskId) {
-		ActionCreator.markAsDone(taskId);
+	toggleDone(taskId) {
+		ActionCreator.toggleDone(taskId);
 	},
 	render() {
 		if(this.state.error) {
@@ -37,7 +37,7 @@ export default React.createClass({
 		return <div>
 			<ul>
 				{this.state.todos.map((item, ind) => {
-					return <li key={ind} onClick={this.markAsDone.bind(this, item.id)}>{item.done ? "DONE" : ""} {item.title}</li>
+					return <li key={ind} onClick={this.toggleDone.bind(this, item.id)}>{item.done ? "DONE" : ""} {item.title}</li>
 				})}
 			</ul>
 			<form ref='addForm'>

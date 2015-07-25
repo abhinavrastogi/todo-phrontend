@@ -11,9 +11,9 @@ let TodoStore = Store.create({
 				this.emitChange();
 				break;
 
-			case Actions.MARK_AS_DONE:
+			case Actions.TOGGLE_DONE:
 				var taskAtHand = this.get(payload.data).toJSON();
-				taskAtHand.done = true;
+				taskAtHand.done = !taskAtHand.done;
 				this.add(taskAtHand, {merge: true});
 				this.emitChange();
 				break;
