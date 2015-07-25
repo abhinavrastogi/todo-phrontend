@@ -7,7 +7,14 @@ let TodoStore = Store.create({
 	handler: function(payload) {
 		switch(payload.actionType) {
 			case Actions.ADD_TODO:
-				this.add({id: this.length + 1, title: payload.data, done: false}, {parse: true});
+				this.add({id: this.length + 1, title: payload.data, done: false});
+				this.emitChange();
+				break;
+
+			case Actions.MARK_AS_DONE:
+				var taskAtHand = this.get(payload.data).toJSON();
+				taskAtHand.done = true;
+				this.add(taskAtHand, {merge: true});
 				this.emitChange();
 				break;
 		}

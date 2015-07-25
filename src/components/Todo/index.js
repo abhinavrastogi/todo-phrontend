@@ -26,6 +26,9 @@ export default React.createClass({
 
 		this.refs.addForm.getDOMNode().reset();
 	},
+	markAsDone(taskId) {
+		ActionCreator.markAsDone(taskId);
+	},
 	render() {
 		if(this.state.error) {
 			return <div>There was an error</div>
@@ -33,8 +36,8 @@ export default React.createClass({
 
 		return <div>
 			<ul>
-				{this.state.todos.map(function(item, ind) {
-					return <li key={ind}>{item.title}</li>
+				{this.state.todos.map((item, ind) => {
+					return <li key={ind} onClick={this.markAsDone.bind(this, item.id)}>{item.done ? "DONE" : ""} {item.title}</li>
 				})}
 			</ul>
 			<form ref='addForm'>
