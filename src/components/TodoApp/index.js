@@ -6,7 +6,6 @@ import ActionCreator from '../../actions/TodoActionCreator';
 import Header from '../Header';
 import TodoTextInput from '../TodoTextInput';
 import ItemList from '../ItemList';
-import TodoItem from '../TodoItem';
 
 import styles from './todoapp.css';
 
@@ -45,7 +44,7 @@ export default React.createClass({
 				<TodoTextInput />
 			</Header>
 			<ItemList todos={this.state.todos} />
-			<div>{this.state.remaining} items pending</div>
+			<div className={styles.footer}>{this.state.remaining} items pending</div>
 		</div>
 	}
 });
