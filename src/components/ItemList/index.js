@@ -7,7 +7,13 @@ export default React.createClass({
 	render() {
 		return <ul className={styles.list}>
 			{this.props.todos.map((item, ind) => {
-				return <TodoItem key={ind} data={item} />;
+				if(item.done) {
+					if(this.props.show == 'all' || this.props.show == 'completed') {
+						return <TodoItem key={ind} data={item} />;
+					}
+				} else if(this.props.show == 'all' || this.props.show == 'pending') {
+					return <TodoItem key={ind} data={item} />;
+				}
 			})}
 		</ul>
 	}

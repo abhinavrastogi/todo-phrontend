@@ -6,6 +6,7 @@ import ActionCreator from '../../actions/TodoActionCreator';
 import Header from '../Header';
 import TodoTextInput from '../TodoTextInput';
 import ItemList from '../ItemList';
+import Filters from '../Filters';
 
 import styles from './todoapp.css';
 
@@ -15,6 +16,7 @@ export default React.createClass({
 			todos: [],
 			completed: 0,
 			remaining: 0,
+			show: 'all',
 			error: false
 		}
 	},
@@ -34,6 +36,11 @@ export default React.createClass({
 	error() {
 		this.setState({ error: true });
 	},
+	setFilter(filter) {
+		this.setState({
+			show: filter
+		});
+	},
 	render() {
 		if(this.state.error) {
 			return <div>There was an error</div>
@@ -43,8 +50,9 @@ export default React.createClass({
 			<Header>
 				<TodoTextInput />
 			</Header>
-			<ItemList todos={this.state.todos} />
+			<ItemList todos={this.state.todos} show={this.state.show} />
 			<div className={styles.footer}>{this.state.remaining} items pending</div>
+			<Filters setFilter={this.setFilter} selected={this.state.show} />
 		</div>
 	}
 });
