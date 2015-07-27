@@ -1,7 +1,7 @@
 import React from 'react';
-import Todo from './src/components/Todo';
+import TodoApp from './src/components/TodoApp';
 
 window.addEventListener('DOMContentLoaded', function() {
 	//Append the component to the container
-	React.render(<Todo/>, document.getElementById('container'));
+	React.render(<TodoApp/>, document.getElementById('container'));
 });

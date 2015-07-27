@@ -1,8 +1,14 @@
 import React from 'react';
+import cx from 'classnames';
 import TodoStore from '../../stores/TodoStore';
 import ActionCreator from '../../actions/TodoActionCreator';
 
-import styles from './todo.css';
+import Header from '../Header';
+import TodoTextInput from '../TodoTextInput';
+import ItemList from '../ItemList';
+import TodoItem from '../TodoItem';
+
+import styles from './todoapp.css';
 
 export default React.createClass({
 	getInitialState() {
@@ -19,6 +25,7 @@ export default React.createClass({
 	change() {
 		var todos = TodoStore.get();
 		var completed = todos.reduce(function(a, item) { return item.done ? ++a : a; }, 0);
+
 		this.setState({
 			todos: todos,
 			completed: completed,
@@ -26,34 +33,18 @@ export default React.createClass({
 		});
 	},
 	error() {
-		this.setState({
-			error: true
-		})
-	},
-	addTodo(e) {
-		e.preventDefault();
-		var title = this.refs.title.getDOMNode().value;
-		ActionCreator.addTodo(title);
-
-		this.refs.addForm.getDOMNode().reset();
-	},
-	toggleDone(taskId) {
-		ActionCreator.toggleDone(taskId);
+		this.setState({ error: true });
 	},
 	render() {
 		if(this.state.error) {
 			return <div>There was an error</div>
 		}
 
-		return <div className={styles.todo}>
-			<form ref='addForm' onSubmit={this.addTodo}>
-				<input type='text' ref='title' /><input type='submit' value='Add' className={styles.hidden} />
-			</form>
-			<ul>
-				{this.state.todos.map((item, ind) => {
-					return <li key={ind} onClick={this.toggleDone.bind(this, item.id)}>{item.done ? "DONE" : ""} {item.title}</li>
-				})}
-			</ul>
+		return <div className={styles.todoapp}>
+			<Header>
+				<TodoTextInput />
+			</Header>
+			<ItemList todos={this.state.todos} />
 			<div>{this.state.remaining} items pending</div>
 		</div>
 	}
