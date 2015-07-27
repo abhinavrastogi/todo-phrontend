@@ -10,6 +10,9 @@ let TodoActionCreator = {
 	},
 	deleteTodo: function(taskId) {
 		Dispatcher.dispatch(Actions.DELETE_TODO, taskId);
+	},
+	updateItem: function(taskId, title) {
+		Dispatcher.dispatch(Actions.UPDATE_ITEM, {id: taskId, title});
 	}
 };
 

@@ -22,6 +22,11 @@ let TodoStore = Store.create({
 				this.remove(payload.data);
 				this.emitChange();
 				break;
+
+			case Actions.UPDATE_ITEM:
+				this.add(payload.data, {merge: true});
+				this.emitChange();
+				break;
 		}
 	}
 });
