@@ -17,6 +17,11 @@ let TodoStore = Store.create({
 				this.add(taskAtHand, {merge: true});
 				this.emitChange();
 				break;
+
+			case Actions.DELETE_TODO:
+				this.remove(payload.data);
+				this.emitChange();
+				break;
 		}
 	}
 });

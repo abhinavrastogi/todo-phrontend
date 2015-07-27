@@ -1,11 +1,13 @@
 .item {
     font-size: 24px;
     border-bottom: 1px solid #ededed;
-    padding: 15px 60px 15px 15px;
+    display: block;
 
     .doneTick {
-        padding: 0 10px;
+        padding: 16px 26px;
         opacity: 0.1;
+        display: inline-block;
+        cursor: pointer;
     }
 
     .title {
@@ -13,6 +15,8 @@
         word-break: break-word;
         line-height: 1.2;
         transition: opacity 0.4s;
+        padding: 16px;
+        display: inline-block;
     }
 
     &.done {
@@ -24,6 +28,30 @@
         .title {
             text-decoration: line-through;
             opacity: 0.2;
+        }
+    }
+
+    .remove {
+        text-transform: uppercase;
+        color: #900;
+        font-size: 10px;
+        float: right;
+        border: 1px solid;
+        border-radius: 3px;
+        padding: 0 5px;
+        display: none;
+        cursor: pointer;
+        margin: 20px;
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &:hover {
+        .remove {
+            display: inline-block;
         }
     }
 }

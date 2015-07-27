@@ -7,6 +7,9 @@ let TodoActionCreator = {
 	},
 	toggleDone: function(taskId) {
 		Dispatcher.dispatch(Actions.TOGGLE_DONE, taskId);
+	},
+	deleteTodo: function(taskId) {
+		Dispatcher.dispatch(Actions.DELETE_TODO, taskId);
 	}
 };
 
