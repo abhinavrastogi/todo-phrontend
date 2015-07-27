@@ -10,7 +10,7 @@ module.exports = makeConfig({
 	publicPath: 'public/',
 	minimize: __PROD__,
 	hot: __DEV__,
-	separateStylesheet: __PROD__,
+	separateStylesheet: true,//__PROD__,
 	//transpile: 'my-other-module'
 	cssLocalImports: true,
 	moduleDirectories: path.join(__dirname, 'src'),
