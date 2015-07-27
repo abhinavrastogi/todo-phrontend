@@ -8,6 +8,8 @@ export default React.createClass({
 	getInitialState() {
 		return {
 			todos: [],
+			completed: 0,
+			remaining: 0,
 			error: false
 		}
 	},
@@ -15,7 +17,13 @@ export default React.createClass({
 		TodoStore.subscribe(this.change, this.error);
 	},
 	change() {
-		this.setState({todos: TodoStore.get()});
+		var todos = TodoStore.get();
+		var completed = todos.reduce(function(a, item) { return item.done ? ++a : a; }, 0);
+		this.setState({
+			todos: todos,
+			completed: completed,
+			remaining: todos.length - completed
+		});
 	},
 	error() {
 		this.setState({
@@ -46,6 +54,7 @@ export default React.createClass({
 					return <li key={ind} onClick={this.toggleDone.bind(this, item.id)}>{item.done ? "DONE" : ""} {item.title}</li>
 				})}
 			</ul>
+			<div>{this.state.remaining} items pending</div>
 		</div>
 	}
 });
