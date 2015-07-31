@@ -1,5 +1,5 @@
 # todo-phrontend
-Todo app built on the Flipkart/Phrontend framework
+Todo app built on the [Flipkart/Phrontend](https://github.com/flipkart-incubator/phrontend) framework
 
 See demo: http://abhinavrastogi.github.io/todo-phrontend/
 
